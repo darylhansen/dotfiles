@@ -1,0 +1,4 @@
+Plugins!
+  pathogen
+  yankring
+  repeat
