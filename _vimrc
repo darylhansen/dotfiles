@@ -1,5 +1,9 @@
 " Daryl's vimrc file.
-"
+
+call pathogen#infect()
+
+source robert/vimrc
+
 "=== Appearance settings ==="
 " Indentation settings
 set expandtab
