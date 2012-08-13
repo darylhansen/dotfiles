@@ -3,6 +3,7 @@
 call pathogen#infect()
 
 source ~/.vim/robert/vimrc
+call pathogen#infect('~/.vim/robert/bundle')
 
 "=== Appearance settings ==="
 " Indentation settings
