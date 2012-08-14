@@ -30,6 +30,12 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Resizing windows
+map <leader>h <C-W><
+map <leader>j <C-W>+
+map <leader>k <C-W>-
+map <leader>l <C-W>>
+
 syntax enable
 
 " Highlight whitespace at end of line in red
