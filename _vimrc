@@ -6,7 +6,7 @@ source ~/.vim/robert/vimrc
 call pathogen#infect('~/.vim/robert/bundle')
 
 " Add the common tagfile -- this is specific to Daryl's Wibi laptop.
-set tags+=~/commontags
+set tags+=~/.tags
 
 "=== Appearance settings ==="
 " Indentation settings
