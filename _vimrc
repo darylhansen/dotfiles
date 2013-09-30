@@ -2,8 +2,8 @@
 
 call pathogen#infect()
 
-source ~/.vim/robert/vimrc
-call pathogen#infect('~/.vim/robert/bundle')
+" source ~/.vim/robert/vimrc
+" call pathogen#infect('~/.vim/robert/bundle')
 
 " Add the common tagfile -- this is specific to Daryl's Wibi laptop.
 set tags+=~/.tags
