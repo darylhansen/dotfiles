@@ -2,11 +2,14 @@
 
 call pathogen#infect()
 
+let vimcomp="default"
+source ~/.vimcomp
+
 " source ~/.vim/robert/vimrc
 " call pathogen#infect('~/.vim/robert/bundle')
 
 " Add the common tagfile -- this is specific to Daryl's Wibi laptop.
-set tags+=~/.tags
+" set tags+=~/.tags
 
 "=== Appearance settings ==="
 " Indentation settings
@@ -68,6 +71,9 @@ nnoremap ; :
 nmap <silent> <leader>/ :nohlsearch<CR>
 
 set pastetoggle=<F2>
+if vimcomp == "crouton"
+  set pastetoggle=<leader>2
+endif
 
 " Easily switch between a .cc and its corresponding .h file.
 " If I knew how to vimscript properly this would be one function,
@@ -78,7 +84,7 @@ set pastetoggle=<F2>
 :  if ext == "cc"
 :    return expand("%:r") . ".h"
 :  endif
-:  if ext == "h" 
+:  if ext == "h"
 :    return expand("%:r") . ".cc"
 :  endif
 :  return expand("%")
