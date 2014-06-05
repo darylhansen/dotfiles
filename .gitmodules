@@ -1,3 +1,0 @@
-[submodule "robert"]
-	path = robert
-	url = https://github.com/robotoer/vim-config.git
