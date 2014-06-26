@@ -118,10 +118,7 @@ nnoremap ; :
 " \/ wipes search highlighting
 nmap <silent> <leader>/ :nohlsearch<CR>
 
-set pastetoggle=<F2>
-if vimcomp == "crouton"
-  set pastetoggle=<leader>2
-endif
+set pastetoggle=<leader>i
 
 " Commenting blocks of code. Taken from StackOverflow
 " Resets the search history, which is obnoxious.
