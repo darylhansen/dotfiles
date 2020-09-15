@@ -23,7 +23,8 @@ Plugin 'scrooloose/nerdcommenter'
   let g:NERDSpaceDelims = 1
 
 " Improved status line -- so pretty!
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
   set laststatus=2
   set t_Co=256
   let g:airline_powerline_fonts = 1
@@ -34,6 +35,9 @@ Plugin 'csv.vim'
   hi CSVColumnOdd  term=bold ctermbg=5 guibg=DarkMagenta
   hi CSVColumnHeaderEven term=bold ctermbg=4 guibg=DarkBlue
   hi CSVColumnHeaderOdd term=bold ctermbg=5 guibg=DarkMagenta
+
+Plugin 'google/vim-maktaba'
+Plugin 'bazelbuild/vim-bazel'
 
 " TODO: More plugins go here!
 " Ultisnips: boilerplate stuff
@@ -122,7 +126,7 @@ set pastetoggle=<leader>i
 
 " Commenting blocks of code. Taken from StackOverflow
 " Resets the search history, which is obnoxious.
-" My google ~/.local.vim has a better alternative
+" My google ~/.local.vim had a better alternative
 if vimcomp != 'google'
   autocmd FileType c,cpp,java,scala,h let b:comment_leader = '// '
   autocmd FileType sh,ruby,python     let b:comment_leader = '# '
@@ -133,3 +137,24 @@ if vimcomp != 'google'
   noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
   noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 endif
+
+" Commands to 'build here' (with bazelbuild/vim-bazel)
+" From https://github.com/bazelbuild/vim-bazel/issues/4#issuecomment-507145106
+function! BazelGetCurrentBufTarget()
+    let bazel_file_label=system("bazel query " . bufname("%") . " --color no --curses no --noshow_progress | tr -d '[:space:]'")
+    let bazel_file_package=split(bazel_file_label, ":")[0]
+    let g:current_bazel_target=system("bazel query \"attr('srcs', " . bazel_file_label . ", " . bazel_file_package . ":*)\" --color no --curses no --noshow_progress | tr -d '[:space:]'")
+endfunction
+
+function! BazelBuildHere()
+    :call  BazelGetCurrentBufTarget()
+    :execute 'Bazel build ' . g:current_bazel_target
+endfunction
+
+function! BazelTestHere()
+    :call BazelGetCurrentBufTarget()
+    :execute 'Bazel test ' . g:current_bazel_target
+endfunction
+
+nnoremap <leader>bb :call BazelBuildHere()<CR>
+nnoremap <leader>bt :call BazelTestHere()<CR>
