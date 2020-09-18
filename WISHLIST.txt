@@ -2,3 +2,5 @@ Plugins!
   pathogen
   yankring
   repeat
+
+Get an explicit path management function -- talk to jmmcarrell@sift.com
